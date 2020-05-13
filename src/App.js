@@ -4,20 +4,23 @@ import './App.css';
 function App() {
   const firstName = 'Thierry';
   const lastName = 'Feuzeu';
+  const job  = 'Formateur';
+  const city = 'St Malo';
 
   const getFullName = (firstName, lastName) => `${firstName} ${lastName}`;
-  const user = { job: 'Formateur', city: 'Rennes' };
 
-  const inputPlaceholder = 'Enter your details';
-  const detailsInput = <input placeholder={inputPlaceholder} />;
-
+  const hobbies = [ 'cinema', 'karting' ];
+  const score = 5;
 
   return (
     <div className="App">
     <h3>Nom complet : {getFullName(firstName, lastName)}</h3>
-    <p>Job: {user.job}</p>
-    <p>Ville: {user.city}</p>
-    {detailsInput}
+    <p>Job: {job}</p>
+    <p>Ville: {city}</p>
+    <ul>
+      {hobbies.map((hobby) => <li>{hobby}</li>)}
+    </ul>
+    <p>{score > 10 ? "Good" : "Not so good"} score</p>
     </div>
   );
 }
