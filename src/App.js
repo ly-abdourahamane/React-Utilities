@@ -1,11 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const fullName = 'Thierry Feuzeu';
-  const job  = 'Formateur';
-  const ville = 'Rennes';
+  const fullName = 'Abdourahamane LY';
+  const job  = 'Developpeur';
+  const ville = 'Antibes';
 
  
 
