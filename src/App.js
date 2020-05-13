@@ -1,12 +1,8 @@
 import React from 'react';
 import './App.css';
+import BlogEntry from './BlogEntry';
 
 function App() {
-  const blogEntry = {
-    title: 'Mon premier texte',
-    summary: "Le texte où j'explique donc pourquoi je commence à écrire des textes."
-  }
-
   const blogEntries = [
     {
       id: 'id01',
@@ -26,12 +22,8 @@ function App() {
   ]
 
   const blogElements = blogEntries.map((entry) => {
-    console.log(entry);
     return (
-      <div className="BlogEntry" key={entry.id}>
-        <h3>{entry.title}</h3>
-        <p>{entry.summary}</p>
-      </div>
+      <BlogEntry entry={entry} key={entry.id}/>
     )
   });
 
