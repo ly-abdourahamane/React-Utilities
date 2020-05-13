@@ -1,4 +1,5 @@
 import React from 'react';
+import './BlogEntry.css';
 
 function BlogEntry({entry}) {
   console.log(entry);
