@@ -7,7 +7,8 @@ function App() {
     {
       id: 'id01',
       title: 'Mon premier texte',
-      summary: "Le texte où j'explique donc pourquoi je commence à écrire des textes."
+      summary: "Le texte où j'explique donc pourquoi je commence à écrire des textes.",
+      image: 'image_01'
     },
     {
       id: 'id02',
@@ -17,7 +18,8 @@ function App() {
     {
       id: 'id03',
       title: 'Mon troisième texte',
-      summary: "Le texte où j'explique donc pourquoi je commence à écrire des textes."
+      summary: "Le texte où j'explique donc pourquoi je commence à écrire des textes.",
+      image: 'image_03'
     }
   ]
 

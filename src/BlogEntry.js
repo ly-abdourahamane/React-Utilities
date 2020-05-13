@@ -1,11 +1,12 @@
 import React from 'react';
 
-function BlogEntry(props) {
-  console.log(props.entry);
+function BlogEntry({entry}) {
+  console.log(entry);
         return (
             <div className="BlogEntry">
-              <h3>{props.entry.title}</h3>
-              <p>{props.entry.summary}</p>
+              <h3>{entry.title}</h3>
+              <p>{entry.summary}</p>
+              {entry.image && <p>{entry.image}</p>}
             </div>
           )     
 }
