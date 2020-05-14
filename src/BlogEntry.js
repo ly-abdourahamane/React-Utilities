@@ -8,7 +8,7 @@ function BlogEntry({entry}) {
             <div className={classes.BlogEntry}>
               <h3>{entry.title}</h3>
               <p>{entry.summary}</p>
-              {entry.image && <p>{entry.image}</p>}
+              {entry.image && entry.image}
             </div>
           )     
 }
