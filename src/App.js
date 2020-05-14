@@ -29,9 +29,9 @@ class App extends Component {
     }
   ]
 
-  onButtonClick = (button) => {
-    console.log('Clicked on button')
-     this.setState({showEntries: false});
+  onToggleBlogEntries = (button) => {
+    console.log('Clicked on button');
+     this.setState({showEntries: !this.state.showEntries});
   }
 
   blogElements = this.blogEntries.map((entry) => {
@@ -45,7 +45,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <button onClick={this.onButtonClick}>Hide Elements</button>
+        <button onClick={this.onToggleBlogEntries}>Toggle Elements</button>
         {this.state.showEntries && this.blogElements}
       </div>
     );
