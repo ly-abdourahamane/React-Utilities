@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import BlogEntry from './BlogEntry';
 
 
-class App extends Component {
+class App extends React.Component {
   constructor() {
     super()
     this.state = { showEntries: true }
@@ -29,23 +29,27 @@ class App extends Component {
     }
   ]
 
-  onToggleBlogEntries = (button) => {
-    console.log('Clicked on button');
-     this.setState({showEntries: !this.state.showEntries});
+  onClick = (button) => {
+    console.log('Clicked on button')
+    this.setState({ showEntries: !this.state.showEntries });
+  }
+
+  onBlogEntryClick = (entry) => {
+    console.log('Clicked onblog entry', entry)
   }
 
   blogElements = this.blogEntries.map((entry) => {
     console.log(entry)
 
     return (
-      <BlogEntry key={entry.id} entry={entry}/>
+      <BlogEntry key={entry.id} entry={entry} onClick={this.onBlogEntryClick} />
     )
   })
 
   render() {
     return (
       <div className="App">
-        <button onClick={this.onToggleBlogEntries}>Toggle Elements</button>
+        <button onClick={this.onClick}>Toggle Elements</button>
         {this.state.showEntries && this.blogElements}
       </div>
     );
