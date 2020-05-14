@@ -21,9 +21,11 @@ function App() {
     }
   ]
 
+  const buttonId = 5;
 
-  const onButtonClick = () => {
+  const onButtonClick = (button, id) => {
     console.log('Clicked on button')
+    console.log(id, button)
   }
 
   const blogElements = blogEntries.map((entry) => {
@@ -36,7 +38,7 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={onButtonClick}>Hide Elements</button>
+      <button onClick={(e) => onButtonClick(e.target, buttonId)}>Hide Elements</button>
       {blogElements}
     </div>
   );
