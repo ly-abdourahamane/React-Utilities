@@ -5,11 +5,12 @@ class BlogEntry extends React.Component {
 
   render()  {
   console.log(this.props.entry, classes);
+  let {entry, onClick} = this.props;
         return (
-            <div className={classes.BlogEntry} onClick={() => this.props.onClick(this.props.entry)}>
-              <h3>{this.props.entry.title}</h3>
-              <p>{this.props.entry.summary}</p>
-              {this.props.entry.image && this.props.entry.image}
+            <div className={classes.BlogEntry} onClick={() =>onClick(entry)}>
+              <h3>{entry.title}</h3>
+              <p>{entry.summary}</p>
+              {entry.image && entry.image}
             </div>
           ) 
         }    
