@@ -6,30 +6,10 @@ import BlogEntry from './BlogEntry';
 class App extends React.Component {
   constructor() {
     super()
-    this.state = { showEntries: true }
+    this.state = { showEntries: true, blogEntries: [] }
   }
 
- 
-
-  blogEntries = [
-    {
-      id: 'a1',
-      title: 'Mon premier texte',
-      summary: "Le texte où j'explique donc pourquoi je commence à écrire des textes."
-    },
-    {
-      id: 'a2',
-      title: 'Mon deuxième texte',
-      summary: "Le texte où j'explique donc pourquoi je commence à écrire des textes."
-    },
-    {
-      id: 'a3',
-      title: 'Mon troisième texte',
-      summary: "Le texte où j'explique donc pourquoi je commence à écrire des textes."
-    }
-  ]
-
-  onClick = (button) => {
+  onButtonClick = (button) => {
     console.log('Clicked on button')
     this.setState({ showEntries: !this.state.showEntries });
   }
@@ -38,21 +18,30 @@ class App extends React.Component {
     console.log('Clicked onblog entry', entry)
   }
 
-  blogElements = this.blogEntries.map((entry) => {
-    console.log(entry)
-
-    return (
-      <BlogEntry key={entry.id} entry={entry} onClick={this.onBlogEntryClick} />
-    )
-  })
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(entries => entries.slice(0, 2))
+      .then(entries => entries.map((entry) => { return {...entry, summary: entry.body}}))
+      // .then(entries => entries.slice(0, 10).map((entry) => { return {...entry, summary: entry.body}}))
+      .then(entries => this.setState({ blogEntries: entries }))
+  }
 
   render() {
+    let blogElements = this.state.blogEntries.map((entry) => {
+     // console.log(entry)
+  
+      return (
+        <BlogEntry key={entry.id} entry={entry} onClick={this.onBlogEntryClick} />
+      )
+    })
+
     return (
       <div className="App">
-        <button onClick={this.onClick}>Toggle Elements</button>
-        {this.state.showEntries && this.blogElements}
+        <button onClick={this.onButtonClick}>Toggle Elements</button>
+        {this.state.showEntries && blogElements}
       </div>
-    );
+      );
   }
 }
 
