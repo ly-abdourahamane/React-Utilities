@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import BlogEntry from './BlogEntry';
 
-function App() {
-  const blogEntries = [
+
+class App extends Component {
+  constructor() {
+    super()
+    this.state = { showEntries: true }
+  }
+
+ 
+
+  blogEntries = [
     {
       id: 'a1',
       title: 'Mon premier texte',
@@ -21,14 +29,12 @@ function App() {
     }
   ]
 
-  const buttonId = 5;
-
-  const onButtonClick = (button, id) => {
+  onButtonClick = (button) => {
     console.log('Clicked on button')
-    console.log(id, button)
+     this.setState({showEntries: false});
   }
 
-  const blogElements = blogEntries.map((entry) => {
+  blogElements = this.blogEntries.map((entry) => {
     console.log(entry)
 
     return (
@@ -36,11 +42,14 @@ function App() {
     )
   })
 
-  return (
-    <div className="App">
-      <button onClick={(e) => onButtonClick(e.target, buttonId)}>Hide Elements</button>
-      {blogElements}
-    </div>
-  );
+  render() {
+    return (
+      <div className="App">
+        <button onClick={this.onButtonClick}>Hide Elements</button>
+        {this.state.showEntries && this.blogElements}
+      </div>
+    );
+  }
 }
+
 export default App;
