@@ -1,8 +1,16 @@
-import { useState } from "react";
-import { callbackify } from "util";
+import { useState, useEffect } from "react";
 
-const useForm = () => {
+const useForm = (submit, validate) => {
     const [values, setValues] = useState({email: "", password: ""});
+    const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    
+    useEffect(() => {
+        if(Object.keys(errors).length === 0 && isSubmitting) {
+            submit();
+            setValues({email: "", password: ""});
+        }
+    }, [errors, submit, isSubmitting]);
 
     const handleChange = event => {
         const {name, value} = event.target;
@@ -13,14 +21,15 @@ const useForm = () => {
     }
     const handleSubmit = event => {
         event.preventDefault();
-        console.log("submit succefully", values);
-        // callback();
+        setErrors(validate(values));
+        setIsSubmitting(true)
     }
 
     return {
         handleChange,
         handleSubmit,
-        values
+        values,
+        errors
     }
 }
 
