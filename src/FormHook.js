@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useForm from "./useForm";
 import validate from './validateLogin';
+
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 
 export default function FormHook() {
   const {handleChange, handleSubmit, values, errors} = useForm(submit, validate);
@@ -11,25 +15,31 @@ function submit() {
 
   return (
    <form noValidate onSubmit={handleSubmit}>
-       <label>Email</label>
-       <div>
-            <input
-                className={`${errors.email && "inputError"}`}
-             name="email" type="email" value={values.email}
-             onChange={handleChange}
-             />
-           {errors.email && <p className="error">{errors.email}</p>}
+    
+
+       <br/><br/>
+    
+        <div>
+          <label>Email</label>
+          <TextField 
+          className={`${errors.password && "inputError"}`}
+          name="email" type="text" value={values.name} onChange={handleChange}
+          id="email" label="Email" variant="outlined" />
+          {errors.email && <p className="error">{errors.email}</p>}
         </div>
 
+        <br/>
+        <div>
         <label>Password</label>
-       <div>
-            <input 
-            className={`${errors.password && "inputError"}`}
-            name="password" type="password" value={values.password} onChange={handleChange}/>
-            {errors.password && <p className="error">{errors.password}</p>}
+        <TextField 
+        className={`${errors.password && "inputError"}`}
+        name="password" type="password" value={values.password} onChange={handleChange}
+        id="password" label="Password" variant="outlined" />
+        {errors.password && <p className="error">{errors.password}</p>}
         </div>
 
-        <button type="submit">Submit</button>
+        <br/>
+        <Button variant="contained" color="primary" type="submit">Submit</Button>
    </form>
   );
 }
