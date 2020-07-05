@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 import BlogEntry from './BlogEntry';
-
+import MyHooks from './MyHooks';
+import FormHook from './FormHook';
 
 class App extends React.Component {
   constructor() {
     super()
-    this.state = { showEntries: true, blogEntries: [] }
+    this.state = { showEntries: true, blogEntries: [], numbers: [1, 2, 3, 4, 5] }
   }
 
   onButtonClick = (button) => {
@@ -38,6 +39,10 @@ class App extends React.Component {
 
     return (
       <div className="App">
+        
+        <FormHook/>
+        
+        <MyHooks bae={'Djeina'} maried={false} numbers={this.state.numbers}/>
         <button onClick={this.onButtonClick}>Toggle Elements</button>
         {this.state.showEntries && blogElements}
       </div>
