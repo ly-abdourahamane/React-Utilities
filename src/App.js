@@ -1,52 +1,63 @@
-import React from 'react';
-import './App.css';
-import BlogEntry from './BlogEntry';
-import MyHooks from './MyHooks';
-import FormHook from './FormHook';
+import React from "react";
+import "./App.css";
+import BlogEntry from "./BlogEntry";
+import MyHooks from "./MyHooks";
+import FormHook from "./FormHook";
 
 class App extends React.Component {
   constructor() {
-    super()
-    this.state = { showEntries: true, blogEntries: [], numbers: [1, 2, 3, 4, 5] }
+    super();
+    this.state = {
+      showEntries: true,
+      blogEntries: [],
+      numbers: [1, 2, 3, 4, 5],
+    };
   }
 
   onButtonClick = (button) => {
-    console.log('Clicked on button')
+    console.log("Clicked on button");
     this.setState({ showEntries: !this.state.showEntries });
-  }
+  };
 
   onBlogEntryClick = (entry) => {
-    console.log('Clicked onblog entry', entry)
-  }
+    console.log("Clicked onblog entry", entry);
+  };
 
   componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(entries => entries.slice(0, 2))
-      .then(entries => entries.map((entry) => { return {...entry, summary: entry.body}}))
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((entries) => entries.slice(0, 2))
+      .then((entries) =>
+        entries.map((entry) => {
+          return { ...entry, summary: entry.body };
+        })
+      )
       // .then(entries => entries.slice(0, 10).map((entry) => { return {...entry, summary: entry.body}}))
-      .then(entries => this.setState({ blogEntries: entries }))
+      .then((entries) => this.setState({ blogEntries: entries }));
   }
 
   render() {
     let blogElements = this.state.blogEntries.map((entry) => {
-     // console.log(entry)
-  
+      // console.log(entry)
+
       return (
-        <BlogEntry key={entry.id} entry={entry} onClick={this.onBlogEntryClick} />
-      )
-    })
+        <BlogEntry
+          key={entry.id}
+          entry={entry}
+          onClick={this.onBlogEntryClick}
+        />
+      );
+    });
 
     return (
       <div className="App">
-        
-        <FormHook/>
-        
-        <MyHooks bae={'Djeina'} maried={false} numbers={this.state.numbers}/>
+        <FormHook />
+
+        <MyHooks bae={"Djeina"} maried={false} numbers={this.state.numbers} />
         <button onClick={this.onButtonClick}>Toggle Elements</button>
         {this.state.showEntries && blogElements}
       </div>
-      );
+    );
   }
 }
 
