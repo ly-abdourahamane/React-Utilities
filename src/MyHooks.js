@@ -20,11 +20,6 @@ export default function MyHooks(props) {
     console.log("click me");
   }
 
-  function handleClick(e) {
-    e.preventDefault();
-    console.log("Le lien a été cliqué.", e);
-  }
-
   function handleClickToggle() {
     setIsToggleOn(!isToggleOn);
     setCount(count + 1);

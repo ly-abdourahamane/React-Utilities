@@ -10,7 +10,7 @@ const useForm = (submit, validate) => {
       submit();
       setValues({ email: "", password: "" });
     }
-  }, [errors]);
+  }, [errors, isSubmitting, submit]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
