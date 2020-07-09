@@ -2,8 +2,9 @@ import React from "react";
 import "./App.css";
 import BlogEntry from "./BlogEntry";
 import MyHooks from "./MyHooks";
-import FormHook from "./FormHook";
 import MyCard from "./components/MyCard";
+import MyDataTable from "./components/MyDataTable/MyDataTable";
+import { FormHook } from "./FormHook";
 
 class App extends React.Component {
   constructor() {
@@ -56,7 +57,9 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <FormHook />
+        <FormHook title={"form title"} />
+
+        {/* <MyDataTable /> */}
 
         <MyHooks bae={"Djeina"} maried={false} numbers={this.state.numbers} />
         <button onClick={this.onButtonClick}>Toggle Elements</button>
